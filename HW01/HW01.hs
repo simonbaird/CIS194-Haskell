@@ -87,3 +87,15 @@ validate n =
 e1 = 4012888888881881 -- true
 e2 = 4012888888881882 -- false
 e3 = 4111111111111111 -- true
+
+--
+-- Exercise 6
+--
+type Peg = String
+type Move = (Peg, Peg)
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+
+hanoi n a b c
+ | n == 0    = []
+ | otherwise = hanoi n' a c b  ++ [(a, c)] ++ hanoi n' b a c
+     where n' = n - 1
