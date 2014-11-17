@@ -99,3 +99,14 @@ hanoi n a b c
  | n == 0    = []
  | otherwise = hanoi n' a c b  ++ [(a, c)] ++ hanoi n' b a c
      where n' = n - 1
+
+--
+-- Exercise 6 (variation)
+-- - with more descriptive vars and without using a guard
+-- - still using the third arg as destination peg, not the second
+--
+hanoi2 :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi2 0 _ _ _ = []
+hanoi2 n src space dest =
+  hanoi2 decN src dest space ++ [(src, dest)] ++ hanoi2 decN space src dest
+    where decN = n - 1
